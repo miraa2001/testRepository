@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Login.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">clinic</a> &gt; <a href="index.source.html" class="el_package">clinic.main</a> &gt; <span class="el_source">Login.java</span></div><h1>Login.java</h1><pre class="source lang-java linenums">package clinic.main;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.*;
+
+import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
+
+public class Login extends JFrame implements ActionListener,ItemListener{
+	JPanel Panel;
+	JLabel Username,Password;
+	JTextField UsernameTF;
+	JPasswordField PasswordPF;
+	private JButton SignIn;
+	JSeparator s1,s2;
+	JCheckBox showPassword;
+	JLabel b;
+	JLabel w;
+	int res;
+<span class="fc" id="L26">	static Scanner in=new Scanner(System.in);</span>
+<span class="fc" id="L27">	static int index=-1;</span>
+	public Login() 
+<span class="fc" id="L29">	{</span>
+<span class="fc" id="L30">		init();</span>
+<span class="fc" id="L31">		setLayout(null);</span>
+		
+<span class="fc" id="L33">		w=new JLabel(&quot;MyClinic's Login portal&quot;);</span>
+<span class="fc" id="L34">		w.setFont(new Font(&quot;SansSerif&quot;,Font.BOLD+Font.ITALIC,24));</span>
+<span class="fc" id="L35">		w.setBackground(new Color(0,0,0));</span>
+<span class="fc" id="L36">		w.setForeground(new Color(0,0,0));</span>
+<span class="fc" id="L37">		w.setSize(280,100);</span>
+<span class="fc" id="L38">		w.setLocation(70,20);</span>
+<span class="fc" id="L39">		add(w);</span>
+<span class="fc" id="L40">		Username=new JLabel(&quot;Username&quot;);</span>
+<span class="fc" id="L41">		Font f=new Font(&quot;SansSerif&quot;,Font.BOLD,18);</span>
+<span class="fc" id="L42">		Username.setForeground(new Color(0,0,0));</span>
+<span class="fc" id="L43">		Username.setFont(f);</span>
+<span class="fc" id="L44">		Username.setLocation(40, 100);</span>
+<span class="fc" id="L45">		Username.setSize(100,100);</span>
+<span class="fc" id="L46">		add(Username);</span>
+<span class="fc" id="L47">		UsernameTF=new JTextField();</span>
+<span class="fc" id="L48">		UsernameTF.setText(&quot;Username&quot;);</span>
+<span class="fc" id="L49">		UsernameTF.setForeground(Color.GRAY);</span>
+<span class="fc" id="L50">		UsernameTF.setBackground(new Color(255,203,230));</span>
+<span class="fc" id="L51">		UsernameTF.setBorder(javax.swing.BorderFactory.createEmptyBorder());</span>
+<span class="fc" id="L52">		UsernameTF.setFont(new Font(&quot;SansSerif&quot;,Font.ITALIC,14));</span>
+<span class="fc" id="L53">		UsernameTF.setSize(170, 20);</span>
+<span class="fc" id="L54">		UsernameTF.setLocation(145,140);</span>
+<span class="fc" id="L55">		UsernameTF.addMouseListener(new MouseListener() {</span>
+
+		    public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L58">		    	UsernameTF.setText(&quot;&quot;);</span>
+<span class="nc" id="L59">		    	UsernameTF.setForeground(Color.BLACK);</span>
+<span class="nc" id="L60">		    	UsernameTF.setFont(new Font(&quot;SansSerif&quot;,Font.PLAIN,14));</span>
+<span class="nc" id="L61">		    }</span>
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+<span class="nc" id="L64">				UsernameTF.setText(&quot;&quot;);</span>
+<span class="nc" id="L65">				UsernameTF.setForeground(Color.BLACK);</span>
+<span class="nc" id="L66">				UsernameTF.setFont(new Font(&quot;SansSerif&quot;,Font.PLAIN,14));</span>
+<span class="nc" id="L67">			}</span>
+
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+<span class="nc" id="L72">			}</span>
+
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+<span class="nc" id="L77">			}</span>
+
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+<span class="nc" id="L82">			}</span>
+		});
+<span class="fc" id="L84">		add(UsernameTF);</span>
+<span class="fc" id="L85">		s1=new JSeparator();</span>
+<span class="fc" id="L86">		s1.setBackground(new Color(0,0,0));</span>
+<span class="fc" id="L87">		s1.setForeground(new Color(0,0,0));</span>
+<span class="fc" id="L88">		s1.setSize(170, 5);</span>
+<span class="fc" id="L89">		s1.setLocation(145, 160);</span>
+<span class="fc" id="L90">		add(s1);</span>
+		
+<span class="fc" id="L92">		Password=new JLabel(&quot;Password&quot;);</span>
+<span class="fc" id="L93">		Password.setForeground(new Color(0,0,0));</span>
+<span class="fc" id="L94">		Password.setFont(f);</span>
+<span class="fc" id="L95">		Password.setLocation(40, 160);</span>
+<span class="fc" id="L96">		Password.setSize(100,100);</span>
+<span class="fc" id="L97">		add(Password);</span>
+<span class="fc" id="L98">		PasswordPF=new JPasswordField(15);</span>
+<span class="fc" id="L99">		PasswordPF.setText(&quot;&quot;);</span>
+<span class="fc" id="L100">		PasswordPF.setForeground(Color.BLACK);</span>
+<span class="fc" id="L101">		PasswordPF.setBackground(new Color(255,203,230));</span>
+<span class="fc" id="L102">		PasswordPF.setBorder(javax.swing.BorderFactory.createEmptyBorder());</span>
+<span class="fc" id="L103">		PasswordPF.setEchoChar('\u26AB');</span>
+<span class="fc" id="L104">		PasswordPF.setSize(170, 20);</span>
+<span class="fc" id="L105">		PasswordPF.setLocation(145,200);</span>
+<span class="fc" id="L106">		PasswordPF.addMouseListener(new MouseListener() {</span>
+
+		    public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L109">		    	PasswordPF.setText(&quot;&quot;);</span>
+<span class="nc" id="L110">		    }</span>
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+<span class="fc" id="L113">				PasswordPF.setText(&quot;&quot;);</span>
+<span class="fc" id="L114">			}</span>
+
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+<span class="nc" id="L119">			}</span>
+
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+<span class="fc" id="L124">			}</span>
+
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+<span class="nc" id="L129">			}</span>
+		});
+<span class="fc" id="L131">		add(PasswordPF);</span>
+<span class="fc" id="L132">		s2=new JSeparator();</span>
+<span class="fc" id="L133">		s2.setBackground(new Color(0,0,0));</span>
+<span class="fc" id="L134">		s2.setForeground(new Color(0,0,0));</span>
+<span class="fc" id="L135">		s2.setSize(170, 5);</span>
+<span class="fc" id="L136">		s2.setLocation(145, 220);</span>
+<span class="fc" id="L137">		add(s2);</span>
+<span class="fc" id="L138">		showPassword=new JCheckBox(&quot;Show Password&quot;);</span>
+<span class="fc" id="L139">		showPassword.setFont(new Font(&quot;SansSerif&quot;,Font.BOLD,12));</span>
+<span class="fc" id="L140">		showPassword.setBackground(new Color(255,203,230));</span>
+<span class="fc" id="L141">		showPassword.setForeground(new Color(0,0,0));</span>
+<span class="fc" id="L142">		showPassword.setSize(170,30);</span>
+<span class="fc" id="L143">		showPassword.setLocation(135,240);</span>
+<span class="fc" id="L144">		showPassword.addActionListener(this);</span>
+<span class="fc" id="L145">		add(showPassword);</span>
+<span class="fc" id="L146">		setSignIn(new JButton(&quot;Log in&quot;));</span>
+<span class="fc" id="L147">		getSignIn().setFont(new Font(&quot;SansSerif&quot;,Font.BOLD,16));</span>
+<span class="fc" id="L148">		getSignIn().setBackground(new Color(0,0,0));</span>
+<span class="fc" id="L149">		getSignIn().setForeground(new Color(255,203,230));</span>
+<span class="fc" id="L150">		getSignIn().setSize(100,35);</span>
+<span class="fc" id="L151">		getSignIn().setLocation(145,310);</span>
+<span class="fc" id="L152">		add(getSignIn());</span>
+<span class="fc" id="L153">		getSignIn().addActionListener(this);</span>
+<span class="fc" id="L154">		b=new JLabel(&quot;&quot;);</span>
+<span class="fc" id="L155">		b.setSize(100,100);</span>
+<span class="fc" id="L156">		b.setLocation(145,350);</span>
+<span class="fc" id="L157">		ImageIcon icon=new ImageIcon(&quot;C:\\Users\\miraj\\eclipse-workspace\\MyBookStore\\MyBookStore\\src\\book\\store\\book.gif&quot;);</span>
+<span class="fc" id="L158">		b.setIcon(icon);</span>
+<span class="fc" id="L159">		add(b);</span>
+<span class="fc" id="L160">		setVisible(true);</span>
+<span class="fc" id="L161">		setLocation(480,100);</span>
+<span class="fc" id="L162">		setSize(400, 440);</span>
+<span class="fc" id="L163">		setResizable(true);</span>
+<span class="fc" id="L164">	}</span>
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+<span class="pc bpc" id="L167" title="1 of 2 branches missed.">		if(e.getSource()==showPassword)</span>
+		{
+<span class="nc bnc" id="L169" title="All 2 branches missed.">			if(showPassword.isSelected())</span>
+			{
+<span class="nc" id="L171">				PasswordPF.setFont(new Font(&quot;SansSerif&quot;,Font.PLAIN,14));</span>
+<span class="nc" id="L172">				PasswordPF.setEchoChar((char) 0);</span>
+			}
+			else
+			{	
+<span class="nc" id="L176">				PasswordPF.setEchoChar('\u26AB');</span>
+<span class="nc" id="L177">				PasswordPF.setFont(new Font(&quot;SansSerif&quot;,Font.PLAIN,12));</span>
+			}
+		}
+<span class="pc bpc" id="L180" title="1 of 2 branches missed.">		if(e.getSource()==getSignIn())</span>
+		{
+<span class="fc" id="L182">			res=checkLoginStatus(UsernameTF.getText(),String.valueOf(PasswordPF.getPassword()));</span>
+<span class="fc bfc" id="L183" title="All 2 branches covered.">			if(res == -2)</span>
+			{
+<span class="fc" id="L185">				UIManager UI=new UIManager();</span>
+<span class="fc" id="L186">				UI.put(&quot;OptionPane.background&quot;,new ColorUIResource(0,0,0));</span>
+<span class="fc" id="L187">				UI.put(&quot;OptionPane.messageForeground&quot;,new ColorUIResource(255,203,230));</span>
+<span class="fc" id="L188">				UI.put(&quot;Panel.background&quot;,new ColorUIResource(0,0,0));</span>
+<span class="fc" id="L189">				ImageIcon icon=new ImageIcon(&quot;C:\\Users\\Lenovo\\Desktop\\clinic\\pics\\Success.gif&quot;);</span>
+<span class="fc" id="L190">				JOptionPane.showMessageDialog(this, &quot;Admin Login Successful&quot;, &quot;Success&quot;, JOptionPane.INFORMATION_MESSAGE, icon);</span>
+<span class="fc" id="L191">				AdminMethods.Admins.get(index).setLogState(true);</span>
+<span class="fc" id="L192">				AdminMethods ac=new AdminMethods();//index);</span>
+<span class="fc" id="L193">			}</span>
+<span class="fc bfc" id="L194" title="All 2 branches covered.">			else if(res == -1)</span>
+			{
+<span class="fc" id="L196">				AdminMethods.Admins.get(index).setLogState(false);</span>
+<span class="fc" id="L197">				UIManager UI=new UIManager();</span>
+<span class="fc" id="L198">				UI.put(&quot;OptionPane.background&quot;,new ColorUIResource(0,0,0));</span>
+<span class="fc" id="L199">				UI.put(&quot;OptionPane.messageForeground&quot;,new ColorUIResource(255,203,230));</span>
+<span class="fc" id="L200">				UI.put(&quot;Panel.background&quot;,new ColorUIResource(0,0,0));</span>
+<span class="fc" id="L201">				ImageIcon icon=new ImageIcon(&quot;C:\\Users\\Lenovo\\Desktop\\clinic\\pics\\Error.gif&quot;);</span>
+<span class="fc" id="L202">				JOptionPane.showMessageDialog(this, &quot;Invalid Credentialis. Try again&quot;, &quot;Error&quot;, JOptionPane.INFORMATION_MESSAGE, icon);</span>
+<span class="fc" id="L203">			}</span>
+<span class="fc bfc" id="L204" title="All 2 branches covered.">			else if(res == 2)</span>
+			{
+<span class="fc" id="L206">				UIManager UI=new UIManager();</span>
+<span class="fc" id="L207">				UI.put(&quot;OptionPane.background&quot;,new ColorUIResource(0,0,0));</span>
+<span class="fc" id="L208">				UI.put(&quot;OptionPane.messageForeground&quot;,new ColorUIResource(255,203,230));</span>
+<span class="fc" id="L209">				UI.put(&quot;Panel.background&quot;,new ColorUIResource(0,0,0));</span>
+<span class="fc" id="L210">				ImageIcon icon=new ImageIcon(&quot;C:\\Users\\Lenovo\\Desktop\\clinic\\pics\\Success.gif&quot;);</span>
+<span class="fc" id="L211">				JOptionPane.showMessageDialog(this, &quot;Patient Login Successful&quot;, &quot;Success&quot;, JOptionPane.INFORMATION_MESSAGE, icon);</span>
+<span class="fc" id="L212">				PatientMethods.Patients.get(index).setLogState(true);</span>
+<span class="fc" id="L213">				PatientMethods pm=new PatientMethods();//index);</span>
+<span class="fc" id="L214">			}</span>
+<span class="fc bfc" id="L215" title="All 2 branches covered.">			else if(res == 1)</span>
+			{
+<span class="fc" id="L217">				UIManager UI=new UIManager();</span>
+<span class="fc" id="L218">				UI.put(&quot;OptionPane.background&quot;,new ColorUIResource(0,0,0));</span>
+<span class="fc" id="L219">				UI.put(&quot;OptionPane.messageForeground&quot;,new ColorUIResource(255,203,230));</span>
+<span class="fc" id="L220">				UI.put(&quot;Panel.background&quot;,new ColorUIResource(0,0,0));</span>
+<span class="fc" id="L221">				ImageIcon icon=new ImageIcon(&quot;C:\\Users\\Lenovo\\Desktop\\clinic\\pics\\Error.gif&quot;);</span>
+<span class="fc" id="L222">				JOptionPane.showMessageDialog(this, &quot;Invalid Credentials. Try again&quot;, &quot;Error&quot;, JOptionPane.INFORMATION_MESSAGE, icon);</span>
+<span class="fc" id="L223">				PatientMethods.Patients.get(index).setLogState(false);</span>
+<span class="fc" id="L224">				System.out.println(&quot;Invalid Credentials. Try again&quot;);</span>
+<span class="fc" id="L225">			}</span>
+<span class="pc bpc" id="L226" title="1 of 2 branches missed.">			else if(res == 0)</span>
+			{
+<span class="fc" id="L228">				UIManager UI=new UIManager();</span>
+<span class="fc" id="L229">				UI.put(&quot;OptionPane.background&quot;,new ColorUIResource(0,0,0));</span>
+<span class="fc" id="L230">				UI.put(&quot;OptionPane.messageForeground&quot;,new ColorUIResource(255,203,230));</span>
+<span class="fc" id="L231">				UI.put(&quot;Panel.background&quot;,new ColorUIResource(0,0,0));</span>
+<span class="fc" id="L232">				ImageIcon icon=new ImageIcon(&quot;C:\\Users\\Lenovo\\Desktop\\clinic\\pics\\Error.gif&quot;);</span>
+<span class="fc" id="L233">				JOptionPane.showMessageDialog(this, &quot;Non-existent Credentials. Do you want to sign up?&quot;, &quot;Error&quot;, JOptionPane.INFORMATION_MESSAGE, icon);</span>
+			}
+		}
+<span class="fc" id="L236">	}</span>
+	
+	public static int checkLoginStatus(String u,String p)
+	{
+
+<span class="fc bfc" id="L241" title="All 2 branches covered.">		for(int i=0;i&lt;PatientMethods.Patients.size();i++)</span>
+		{
+<span class="fc bfc" id="L243" title="All 2 branches covered.">			if(u.equals(PatientMethods.Patients.get(i).getUsername()))</span>
+			{	
+<span class="fc" id="L245">				index=i;</span>
+<span class="fc bfc" id="L246" title="All 2 branches covered.">				if(p.equals(PatientMethods.Patients.get(i).getPassword()))</span>
+<span class="fc" id="L247">					return 2;</span>
+				else
+<span class="fc" id="L249">					return 1;</span>
+			}
+		}
+<span class="fc bfc" id="L252" title="All 2 branches covered.">		for(int i=0;i&lt;AdminMethods.Admins.size();i++)</span>
+		{
+<span class="fc bfc" id="L254" title="All 2 branches covered.">			if(u.equals(AdminMethods.Admins.get(i).getUsername()))</span>
+			{	
+<span class="fc" id="L256">				index=i;</span>
+<span class="fc bfc" id="L257" title="All 2 branches covered.">				if(p.equals(AdminMethods.Admins.get(i).getPassword()))</span>
+<span class="fc" id="L258">					return -2;</span>
+				else
+<span class="fc" id="L260">					return -1;</span>
+			}
+		}
+<span class="fc" id="L263">		return 0;</span>
+	}
+
+	public void itemStateChanged(ItemEvent e) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L268">	}</span>
+	public void init()
+	{
+<span class="pc bpc" id="L271" title="1 of 4 branches missed.">		if((AdminMethods.Admins.size()&lt;=3)&amp;&amp;(PatientMethods.Patients.size()&lt;=3))</span>
+		{
+<span class="fc" id="L273">			Admin a1=new Admin(&quot;miraj&quot;,&quot;1212001&quot;,&quot;Mira Jamous&quot;);</span>
+<span class="fc" id="L274">			Admin a2=new Admin(&quot;talahamad&quot;,&quot;tala2001&quot;,&quot;Tala Hamad&quot;);</span>
+<span class="fc" id="L275">			Admin a3=new Admin(&quot;areenateeq&quot;,&quot;areen2002&quot;,&quot;Areen Ateeq&quot;);</span>
+<span class="fc" id="L276">			AdminMethods.Admins.add(a1);</span>
+<span class="fc" id="L277">			AdminMethods.Admins.add(a2);</span>
+<span class="fc" id="L278">			AdminMethods.Admins.add(a3);</span>
+<span class="fc" id="L279">			Patient c1=new Patient(&quot;ayaayman&quot;,&quot;aya2001&quot;,&quot;Aya Ayman&quot;);		</span>
+<span class="fc" id="L280">			Patient c2=new Patient(&quot;leenh&quot;,&quot;leen21&quot;,&quot;Leen Hodally&quot;);</span>
+<span class="fc" id="L281">			Patient c3=new Patient(&quot;suha2001&quot;,&quot;suhaa2001&quot;,&quot;Suha Mansour&quot;);</span>
+<span class="fc" id="L282">			PatientMethods.Patients.add(c1);</span>
+<span class="fc" id="L283">			PatientMethods.Patients.add(c2);</span>
+<span class="fc" id="L284">			PatientMethods.Patients.add(c3);</span>
+		}
+<span class="fc" id="L286">	}</span>
+	public void setPasswordField(String p)
+	{
+<span class="fc" id="L289">		PasswordPF.setText(p);</span>
+<span class="fc" id="L290">	}</span>
+	public void setUsernameField(String u)
+	{
+<span class="fc" id="L293">		UsernameTF.setText(u);</span>
+<span class="fc" id="L294">	}</span>
+	public static void main(String[] args)
+	{
+<span class="nc" id="L297">		Login login=new Login();</span>
+<span class="nc" id="L298">		login.setVisible(true);</span>
+<span class="nc" id="L299">		login.getContentPane().setBackground(new Color(255,203,230));</span>
+<span class="nc" id="L300">		login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );</span>
+<span class="nc" id="L301">	}</span>
+
+
+	public JButton getSignIn() {
+<span class="fc" id="L305">		return SignIn;</span>
+	}
+	public int getResult()
+	{
+<span class="fc" id="L309">		return res;</span>
+	}
+
+	public void setSignIn(JButton signIn) {
+<span class="fc" id="L313">		SignIn = signIn;</span>
+<span class="fc" id="L314">	}</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

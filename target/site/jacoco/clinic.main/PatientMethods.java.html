@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PatientMethods.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">clinic</a> &gt; <a href="index.source.html" class="el_package">clinic.main</a> &gt; <span class="el_source">PatientMethods.java</span></div><h1>PatientMethods.java</h1><pre class="source lang-java linenums">package clinic.main;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+<span class="fc" id="L6">public class PatientMethods {</span>
+
+<span class="fc" id="L8">	static public ArrayList&lt;Patient&gt; Patients=new ArrayList&lt;Patient&gt;();</span>
+<span class="fc" id="L9">	static public ArrayList&lt;Appointment&gt; Appointments=new ArrayList&lt;Appointment&gt;();</span>
+	public static int checkAvailability(String date, String time) 
+	{
+<span class="fc" id="L12">		int one=1;</span>
+<span class="fc" id="L13">		int minusone=-1;</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">		for(int i=0;i&lt;Appointments.size();i++)</span>
+		{
+<span class="pc bpc" id="L16" title="1 of 4 branches missed.">			if(date.equals(Appointments.get(i).getDate()) &amp;&amp; time.equals(Appointments.get(i).getTime()))</span>
+<span class="fc" id="L17">				return minusone;</span>
+			
+		}			
+<span class="fc" id="L20">		return one; //added</span>
+		
+	}
+	public static int checkRemoveAvailability(String username,String date, String time) {
+<span class="fc" id="L24">		int one=1;</span>
+<span class="fc" id="L25">		int minusone=-1;</span>
+<span class="fc" id="L26">		int index=search(username);</span>
+		ArrayList&lt;Appointment&gt; a;
+<span class="fc" id="L28">		a=Patients.get(index).getAppointments();</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">		for(int i=0;i&lt;a.size();i++)</span>
+		{
+<span class="pc bpc" id="L31" title="1 of 4 branches missed.">			if((date.equals(a.get(i).getDate()))&amp;&amp;(time.equals(a.get(i).getTime())))</span>
+<span class="fc" id="L32">				return -1;</span>
+		}
+<span class="fc" id="L34">		return 1;</span>
+		
+	}
+	public static int search(String u)
+	{
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">		for(int i=0;i&lt;Patients.size();i++)</span>
+		{
+<span class="fc bfc" id="L41" title="All 2 branches covered.">			if(u.equals(Patients.get(i).getUsername()))</span>
+<span class="fc" id="L42">				return i;</span>
+		}
+<span class="nc" id="L44">		return -1;</span>
+	}
+	public static void addAppointment(String u,Appointment a)
+	{
+<span class="fc" id="L48">		Patients.get(search(u)).addToPatientApp(a);</span>
+<span class="fc" id="L49">	}</span>
+	
+	public static void editAppointment(String username,String oldDate,String newDate,String oldTime,String newTime)
+	{
+<span class="fc" id="L53">		int index=search(username);</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">		for(int i=0;i&lt;Patients.get(index).getAppointments().size();i++)</span>
+		{
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">			if((oldDate.equals(Patients.get(index).getAppointments().get(i).getDate()))&amp;&amp;</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">					(oldTime.equals(Patients.get(index).getAppointments().get(i).getTime())))</span>
+			{
+<span class="fc" id="L59">				Patients.get(index).getAppointments().get(i).setDate(newDate);</span>
+<span class="fc" id="L60">				Patients.get(index).getAppointments().get(i).setTime(newTime);</span>
+<span class="fc" id="L61">				break;</span>
+			}
+		}
+<span class="fc" id="L64">	}</span>
+	public static int checkIfAppointmentPassed(String date,String time)
+	{
+<span class="fc" id="L67">		int hour=Integer.parseInt(time.split(&quot;:&quot;)[0]);</span>
+<span class="fc" id="L68">		int minute=Integer.parseInt(time.split(&quot;:&quot;)[1]);</span>
+		/////////////////////////////////////////////////////////
+<span class="fc" id="L70">		int day=Integer.parseInt(date.split(&quot;/&quot;)[0]);</span>
+<span class="fc" id="L71">		int month=Integer.parseInt(date.split(&quot;/&quot;)[1]);</span>
+<span class="fc" id="L72">		int year=Integer.parseInt(date.split(&quot;/&quot;)[2]);</span>
+		/////////////////////////////////////////////////////////////////
+<span class="fc" id="L74">		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy HH:mm&quot;);  </span>
+<span class="fc" id="L75">		LocalDateTime now = LocalDateTime.now();</span>
+<span class="fc" id="L76">		int currentDay=Integer.parseInt(dtf.format(now).split(&quot; &quot;)[0].split(&quot;/&quot;)[0]);</span>
+<span class="fc" id="L77">		int currentMonth=Integer.parseInt(dtf.format(now).split(&quot; &quot;)[0].split(&quot;/&quot;)[1]);</span>
+<span class="fc" id="L78">		int currentYear=Integer.parseInt(dtf.format(now).split(&quot; &quot;)[0].split(&quot;/&quot;)[2]);</span>
+		////////////////////////////////////////////////////////////////////////////////////////////////
+<span class="fc" id="L80">		int currentHour=Integer.parseInt(dtf.format(now).split(&quot; &quot;)[1].split(&quot;:&quot;)[0]);</span>
+<span class="fc" id="L81">		int currentMinute=Integer.parseInt(dtf.format(now).split(&quot; &quot;)[1].split(&quot;:&quot;)[1]);</span>
+		//////////////////////////////////////////////////////////////////////////////////////////////
+<span class="pc bpc" id="L83" title="5 of 6 branches missed.">		if((currentDay&gt;day)||(currentMonth&gt;month)||(currentYear&gt;year))</span>
+<span class="fc" id="L84">			return 1;</span>
+<span class="nc bnc" id="L85" title="All 6 branches missed.">		else if((currentDay&lt;day)||(currentMonth&lt;month)||(currentYear&lt;year))</span>
+<span class="nc" id="L86">			return -1;</span>
+<span class="nc bnc" id="L87" title="All 6 branches missed.">		else if((currentDay==day)||(currentMonth==month)||(currentYear==year))</span>
+		{
+<span class="nc bnc" id="L89" title="All 4 branches missed.">			if((currentHour&gt;=hour)&amp;&amp;(currentMinute&gt;=minute))</span>
+<span class="nc" id="L90">				return 1;</span>
+			else
+<span class="nc" id="L92">				return -1;</span>
+		}
+<span class="nc" id="L94">		return -1;</span>
+				
+	}
+	public static void removeAppointment(String username,String date,String time)
+	{
+<span class="fc" id="L99">		int index=search(username);</span>
+		ArrayList&lt;Appointment&gt; a;
+<span class="fc" id="L101">		a=Patients.get(index).getAppointments();</span>
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">		for(int i=0;i&lt;a.size();i++)</span>
+		{
+<span class="pc bpc" id="L104" title="2 of 4 branches missed.">			if((date.equals(a.get(i).getDate()))&amp;&amp;(time.equals(a.get(i).getTime())))</span>
+			{
+<span class="fc" id="L106">				Patients.get(index).removeAppointment(i);</span>
+<span class="fc" id="L107">				break;</span>
+			}
+		}
+<span class="fc" id="L110">	}</span>
+	public static void changeAppointmentToVisit(String username,String date,String time)
+	{
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">		for(int i=0;i&lt;Appointments.size();i++)</span>
+		{
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">			if( date.equals(Appointments.get(i).getDate()) &amp;&amp; </span>
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">					time.equals(Appointments.get(i).getTime())</span>
+			   )
+			{
+<span class="fc" id="L119">				Appointments.get(i).setStatus(1);</span>
+<span class="fc" id="L120">				break;</span>
+			}
+		}
+<span class="fc" id="L123">		int index=search(username);</span>
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">		for(int i=0;i&lt;Patients.get(index).getAppointments().size();i++)</span>
+		{
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">			if( date.equals(Patients.get(index).getAppointments().get(i).getDate()) &amp;&amp; </span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">					time.equals(Patients.get(index).getAppointments().get(i).getTime())</span>
+			  )
+			{	
+<span class="fc" id="L130">				Patients.get(index).getAppointments().get(i).setStatus(1);</span>
+<span class="fc" id="L131">				Patients.get(index).resortAppointmentReecords();</span>
+<span class="fc" id="L132">				break;</span>
+			}
+		}
+<span class="fc" id="L135">	}</span>
+	public static double invoiceForAVisit(String username,String date,String time)
+	{
+<span class="fc" id="L138">		int index=search(username);</span>
+<span class="pc bpc" id="L139" title="1 of 2 branches missed.">		for(int i=0;i&lt;Patients.get(index).getAppointments().size();i++)</span>
+		{
+<span class="pc bpc" id="L141" title="1 of 2 branches missed.">			if( date.equals(Patients.get(index).getAppointments().get(i).getDate()) &amp;&amp; </span>
+<span class="pc bpc" id="L142" title="1 of 2 branches missed.">					time.equals(Patients.get(index).getAppointments().get(i).getTime())</span>
+			  )
+			{
+<span class="pc bpc" id="L145" title="1 of 2 branches missed.">				if(Patients.get(index).getAppointments().get(i).getStatus()==1)</span>
+<span class="fc" id="L146">					return Patients.get(index).getAppointments().get(i).getService().getPrice();</span>
+				else
+<span class="nc" id="L148">					return -1;			}</span>
+		}
+<span class="nc" id="L150">		return -1;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

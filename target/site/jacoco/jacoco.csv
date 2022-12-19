@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+clinic,clinic.main,Signup,93,0,10,0,22,0,8,0,3,0
+clinic,clinic.main,Login.new MouseListener() {...},45,6,0,0,11,1,5,1,5,1
+clinic,clinic.main,Admin,9,52,0,0,3,20,3,10,3,10
+clinic,clinic.main,Patient,64,150,1,3,17,34,9,13,8,12
+clinic,clinic.main,Service,8,28,0,0,4,7,2,4,2,4
+clinic,clinic.main,Appointment,9,100,0,2,4,26,1,12,1,11
+clinic,clinic.main,AdminMethods,4,56,2,6,1,12,2,7,0,5
+clinic,clinic.main,Login.new MouseListener() {...},8,13,0,0,4,4,3,3,3,3
+clinic,clinic.main,PatientMethods,54,461,40,30,10,70,30,16,0,11
+clinic,clinic.main,Login,52,953,6,26,11,169,7,21,2,10

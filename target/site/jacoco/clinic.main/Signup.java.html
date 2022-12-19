@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Signup.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">clinic</a> &gt; <a href="index.source.html" class="el_package">clinic.main</a> &gt; <span class="el_source">Signup.java</span></div><h1>Signup.java</h1><pre class="source lang-java linenums">package clinic.main;
+
+import java.util.Scanner;
+
+public class Signup {
+<span class="nc" id="L6">	static Scanner in=new Scanner(System.in);</span>
+	public static Boolean search(String u)
+	{
+<span class="nc bnc" id="L9" title="All 2 branches missed.">		for(int i=0;i&lt;PatientMethods.Patients.size();i++)</span>
+		{
+<span class="nc bnc" id="L11" title="All 2 branches missed.">			if(u.equals(PatientMethods.Patients.get(i).getUsername()))</span>
+			{
+<span class="nc" id="L13">				return true;</span>
+			}
+		}
+<span class="nc bnc" id="L16" title="All 2 branches missed.">		for(int i=0;i&lt;AdminMethods.Admins.size();i++)</span>
+		{
+<span class="nc bnc" id="L18" title="All 2 branches missed.">			if(u.equals(AdminMethods.Admins.get(i).getUsername()))</span>
+			{
+<span class="nc" id="L20">				return true;</span>
+			}
+		}
+<span class="nc" id="L23">		return false;</span>
+	}
+	public Signup()
+<span class="nc" id="L26">	{</span>
+<span class="nc" id="L27">		System.out.println(&quot;Welcome to the Sign up portal\n&quot;+</span>
+							&quot;----------------------------------------------\n&quot;+
+							&quot;Please enter your new username&quot;);
+<span class="nc" id="L30">		String u=in.nextLine();</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">		while(search(u))</span>
+		{
+<span class="nc" id="L33">			System.out.println(&quot;Username already exists, try again\nEnter your new username&quot;);</span>
+<span class="nc" id="L34">			u=in.nextLine();</span>
+		}
+<span class="nc" id="L36">		System.out.println(&quot;Please enter the password&quot;);</span>
+<span class="nc" id="L37">		String p=in.nextLine();</span>
+<span class="nc" id="L38">		System.out.println(&quot;Please enter your name&quot;);</span>
+<span class="nc" id="L39">		String n=in.nextLine();</span>
+<span class="nc" id="L40">		Patient pt=new Patient(u,p,n);</span>
+<span class="nc" id="L41">		PatientMethods.Patients.add(pt);</span>
+<span class="nc" id="L42">		System.out.println(&quot;User is added to the system successfully&quot;);</span>
+<span class="nc" id="L43">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
